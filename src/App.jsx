@@ -11,6 +11,7 @@ const QuizApp = () => {
   const [answers, setAnswers] = useState([]);
   const [timeLeft, setTimeLeft] = useState(30);
   const [streak, setStreak] = useState(0);
+  const [maxStreak, setMaxStreak] = useState(0); // Track the maximum streak
   const [quizData, setQuizData] = useState(null);
 
   useEffect(() => {
@@ -65,6 +66,7 @@ const QuizApp = () => {
     setCurrentQuestion(0);
     setAnswers([]);
     setStreak(0);
+    setMaxStreak(0); // Reset max streak
   };
 
   const quitQuiz = () => {
@@ -78,7 +80,11 @@ const QuizApp = () => {
     let points = isCorrect ? currentQ.points : 0;
     if (isCorrect) {
       points += Math.floor(timeLeft / 2);
-      setStreak(prev => prev + 1);
+      setStreak(prev => {
+        const newStreak = prev + 1;
+        setMaxStreak(maxStreak => Math.max(maxStreak, newStreak)); // Update max streak
+        return newStreak;
+      });
       points += streak * 2;
     } else {
       setStreak(0);
@@ -146,7 +152,7 @@ const QuizApp = () => {
           answers={answers}
           totalQuestions={quizData.questions.length}
           startQuiz={startQuiz}
-          streak={streak}
+          streak={maxStreak} // Pass max streak to summary screen
         />
       )}
       {quizState === 'active' && quizData && quizData.questions.length === 0 && (
