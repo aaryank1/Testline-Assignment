@@ -2,6 +2,12 @@
 
 This is a Quiz App built with React and Vite. The app allows users to test their knowledge by answering multiple-choice questions. The app features a start screen, a question screen, and a summary screen. Users can earn points by answering questions correctly and quickly, and they can maintain a streak for additional multipliers.
 
+
+
+https://github.com/user-attachments/assets/e05e4f2b-73d3-4af7-9caf-b45c16d75c27
+
+
+
 ## Features
 
 - Start screen with instructions
